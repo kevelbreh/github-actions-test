@@ -1,6 +1,6 @@
 name: CI
 
-on: [pull_request]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -12,6 +12,16 @@ jobs:
       with:
         java-version: 1.8
     - name: Lint
-      run: ./gradlew app:lint
-    - name: Test
-      run: ./gradlew app:test
+      run: ./gradlew app:assemble
+  lint:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: "test"
+        run: ./gradlew app:lint
+  test:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: "test"
+        run: ./gradlew app:test
