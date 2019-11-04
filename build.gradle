@@ -23,6 +23,13 @@ allprojects {
     }
 }
 
+// Test Logging
+tasks.withType(Test) {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
