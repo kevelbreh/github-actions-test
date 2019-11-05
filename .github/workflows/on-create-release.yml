@@ -9,5 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Echo the greeting's time
-        run: printenv
+      - name: Setting GITHUB_RELEASE_ID
+        run: echo $GITHUB_REF | cut -c 10-
